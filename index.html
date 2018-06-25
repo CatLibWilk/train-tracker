@@ -10,13 +10,109 @@
             <!--momentJS-->
             <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
             <title>TrainTracker 5.Ultra</title>
+            <!--icons css-->
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
             
         </head>
         <body>
             <header></header>
+        <div class="container">
+            <div class="jumbotron">
+                <h1 class="text-center">
+                    TrainTracker 5.Ultra
+                </h1>
+              </div><!--jumbo end-->
+
+            <div id="train-table-row" class="row">
+                <div id="train-table-col" class="col-sm-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <strong><i class="fa fa-train"></i>Current Train Schedule</strong>
+                        </div>
+                        <div class="card-body p-0" id="train-section">
+                            <table class="table table-dark">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Train Name</th>
+                                        <th scope="col">Destination</th>
+                                        <th scope="col">Frequency (min)</th>
+                                        <th scope="col">Next Arrival</th>
+                                        <th scope="col">Minutes Away</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr id="example-row" class="bg-muted">
+                                        <th scope="col" class="text-white-50">Crazy Train</th>
+                                        <th scope="col" class="text-white-50">Off The Rails</th>
+                                        <th scope="col" class="text-white-50">5</th>
+                                        <th scope="col" class="text-white-50">10:10</th>
+                                        <th scope="col" class="text-white-50">2</th>
+                                    </tr>        
+                                </tbody>
+                            </table>
+                        </div><!--card body train table end-->
+                    </div><!--card end-->
+                </div><!--train table col end-->
+            </div><!--train table row end-->
+
+            <div id="input-row" class="row mb-5">
+                <div id="input-col" class="col-sm-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <strong>
+                                <i class="fa fa-list-alt"></i> Add Train</strong>
+                        </div>
+                        <div class="card-body">
+                            <form role="form">
+                            <!-- box for train name-->
+                                <div class="form-group">
+                                    <label for="train-name">Train Name</label>
+                                    <input type="text" class="form-control" id="train-name">
+                                </div>
+                          
+                              <!-- box for destination  -->
+                                <div class="form-group">
+                                    <label for="destination">Destination</label>
+                                    <input type="text" class="form-control" id="destination">
+                                </div>
+                          
+                             <!-- box for first train time-->
+                                <div class="form-group">
+                                    <label for="first-time">First Train Time (HH:mm - Military Time)</label>
+                                    <input type="text" class="form-control" id="first-time">
+                                </div>
+                              
+                                <!-- box for frequency  -->
+                                <div class="form-group">
+                                    <label for="frequency">Frequency (min)</label>
+                                    <input type="text" class="form-control" id="frequency">
+                                </div>        
+                          
+                            <!-- submit button-->
+                                <button type="submit" class="btn btn-default text-light bg-secondary" id="add-train">
+                                    <i class="fa fa-plus-square"></i> Add Train</button>
+                                <button class="btn btn-default" id="clear-all">
+                                    <i class="fa fa-trash"></i> Clear Results</button>
+                            </form>
+                        </div>
+                    </div>      
+                </div><!--input col end-->
+            </div><!--input row end-->
+        </div><!--container end-->
+        <div class="container-fluid">
+        <div class="row bg-warning">
+                <div id="footer" class="col-sm-12">
+                    <hr>
+                      <h5 class="text-center">
+                        <small>SSG - 2018</small>
+                      </h5>
+                </div>
+            </div>
+        </div><!--footer container end-->
 
         <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://www.gstatic.com/firebasejs/5.1.0/firebase.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script> -->
     <script src="assets/javascript/script.js"></script>

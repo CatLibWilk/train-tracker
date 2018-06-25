@@ -1,6 +1,6 @@
 * {
   box-sizing: border-box;
-  text-align: center;
+
 
 }
 
@@ -9,4 +9,15 @@
   clear: both;
   display: table;
   overflow: auto;
+}
+
+
+.jumbotron{
+background-color: #20315A; 
+color: white;
+}
+
+#footer{
+
+    color: cornflowerblue;
 }
