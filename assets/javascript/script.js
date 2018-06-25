@@ -74,8 +74,8 @@ timeCalc();
     var freqTd = $("<td>").text(sv.frequency);
     var nextTd = $("<td>").text(nextArrive);
     var minAwayTd = $("<td>").text(minAway);
-    var delBtn = $("<td>");
-    var delInput = $("<span class='fa fa-trash remove-btn'>");
+    var delBtn = $("<td class='clearfix'>");
+    var delInput = $("<div class='fa fa-trash btn remove-btn'>");
     delInput.attr("id", sv.name);
     delBtn.append(delInput);
 
