@@ -88,6 +88,7 @@ timeCalc();
 });
 ////6/25 should be able to duplicate the above function with "child_removed" listener, and within this function have empty() function to clear table
 ////and then repopulate
+////maybe try to add .then({function()}) to end of remove button function, incl. empty() function to clear table
 
 
 
