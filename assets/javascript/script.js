@@ -52,7 +52,6 @@ database.ref().on("child_added", function(snapshot) {
             var firstTime = sv.first;
 
             var firstTimeConverted = moment(firstTime, "HH:mm").subtract(1, "years");
-            console.log(firstTimeConverted);
 
             var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
 
@@ -76,7 +75,7 @@ timeCalc();
     var nextTd = $("<td>").text(nextArrive);
     var minAwayTd = $("<td>").text(minAway);
     var delBtn = $("<td>");
-    var delInput = $("<input class='fa fa-trash remove-btn' type='button'>").text("x");
+    var delInput = $("<span class='fa fa-trash remove-btn'>");
     delInput.attr("id", sv.name);
     delBtn.append(delInput);
 
@@ -84,13 +83,7 @@ timeCalc();
 
     $("tbody").append(newTr);
 });
-
+/////////heres where I need to figure out delete button functionality
 $("body").on("click", ".remove-btn", function(){
-    var selDelId = $(this).attr("id");
-    var selector = "#" + selDelId;
-    var selDelRow = $(selector);
-    console.log(selDelRow);
 
-    var targetIndex = database.ref().indexOf(selDelRow);
-    console.log(targetIndex);
-})
+});
