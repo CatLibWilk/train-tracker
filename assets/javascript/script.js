@@ -27,7 +27,7 @@ subBtn.on("click", function(event){
     var first = $("#first-time").val();
     var frequency = $("#frequency").val();    
 
-    database.ref().push({
+    database.ref('trains').push({
         name: name,
         destination: destination,
         first: first,
@@ -41,7 +41,7 @@ subBtn.on("click", function(event){
 });
 
 //////listens for database updates and when one occurs, updates train table with firebase data
-database.ref().on("child_added", function(snapshot) {
+database.ref('trains').on("child_added", function(snapshot) {
     var sv = snapshot.val();
     console.log(sv.key);
     var nextArrive = "";
@@ -76,7 +76,7 @@ timeCalc();
     var freqTd = $("<td>").text(sv.frequency);
     var nextTd = $("<td>").text(nextArrive);
     var minAwayTd = $("<td>").text(minAway);
-    var key = sv.key
+    var key = snapshot.key
     var delBtn = $("<td class='clearfix'>");
     var delInput = $("<div class='fa fa-trash btn remove-btn'>");
     delInput.attr("id", key);
@@ -86,10 +86,13 @@ timeCalc();
 
     $("tbody").append(newTr);
 });
+
 /////////heres where I need to figure out delete button functionality
 $("body").on("click", ".remove-btn", function(){
-    database.ref().once('value').then(function(snap){
-        var newSv = snap.val();
-        console.log(newSv.key);
-    });
+    var toDelete = $(this).attr("id");
+    console.log(toDelete);
+    var delRef = firebase.database().ref('trains/'+toDelete);
+    console.log(delRef);
+    delRef.remove();
 });
+
