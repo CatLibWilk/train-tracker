@@ -13,6 +13,7 @@
 ////////////variables////////////////////////////////////////
     var subBtn = $("#add-train");
     var database = firebase.database();
+    var recentSnap = [];
 
 
 ////////////functions usw.///////////////////////////////////
@@ -42,6 +43,7 @@ subBtn.on("click", function(event){
 //////listens for database updates and when one occurs, updates train table with firebase data
 database.ref().on("child_added", function(snapshot) {
     var sv = snapshot.val();
+    console.log(sv.key);
     var nextArrive = "";
     var minAway = "";
 
@@ -74,9 +76,10 @@ timeCalc();
     var freqTd = $("<td>").text(sv.frequency);
     var nextTd = $("<td>").text(nextArrive);
     var minAwayTd = $("<td>").text(minAway);
+    var key = sv.key
     var delBtn = $("<td class='clearfix'>");
     var delInput = $("<div class='fa fa-trash btn remove-btn'>");
-    delInput.attr("id", sv.name);
+    delInput.attr("id", key);
     delBtn.append(delInput);
 
     newTr.append(nameTd, destTd, freqTd, nextTd, minAwayTd, delBtn);
@@ -85,5 +88,8 @@ timeCalc();
 });
 /////////heres where I need to figure out delete button functionality
 $("body").on("click", ".remove-btn", function(){
-
+    database.ref().once('value').then(function(snap){
+        var newSv = snap.val();
+        console.log(newSv.key);
+    });
 });
