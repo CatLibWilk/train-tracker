@@ -67,15 +67,30 @@ database.ref().on("child_added", function(snapshot) {
 timeCalc();
 
     var newTr = $("<tr>");
-    newTr.addClass("bg-warning");
+    newTr.addClass("bg-warning p-1");
+        newTr.attr("id", sv.name);
 
     var nameTd = $("<td>").text(sv.name);
     var destTd = $("<td>").text(sv.destination);
     var freqTd = $("<td>").text(sv.frequency);
     var nextTd = $("<td>").text(nextArrive);
     var minAwayTd = $("<td>").text(minAway);
+    var delBtn = $("<td>");
+    var delInput = $("<input class='fa fa-trash remove-btn' type='button'>").text("x");
+    delInput.attr("id", sv.name);
+    delBtn.append(delInput);
 
-    newTr.append(nameTd, destTd, freqTd, nextTd, minAwayTd);
+    newTr.append(nameTd, destTd, freqTd, nextTd, minAwayTd, delBtn);
 
     $("tbody").append(newTr);
 });
+
+$("body").on("click", ".remove-btn", function(){
+    var selDelId = $(this).attr("id");
+    var selector = "#" + selDelId;
+    var selDelRow = $(selector);
+    console.log(selDelRow);
+
+    var targetIndex = database.ref().indexOf(selDelRow);
+    console.log(targetIndex);
+})
