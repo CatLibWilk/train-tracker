@@ -86,8 +86,12 @@ timeCalc();
 
     $("tbody").append(newTr);
 });
+////6/25 should be able to duplicate the above function with "child_removed" listener, and within this function have empty() function to clear table
+////and then repopulate
 
-/////////heres where I need to figure out delete button functionality
+
+
+/////////deletes selected node from firebase////////////////
 $("body").on("click", ".remove-btn", function(){
     var toDelete = $(this).attr("id");
     console.log(toDelete);
