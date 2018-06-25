@@ -13,7 +13,7 @@
 ////////////variables////////////////////////////////////////
     var subBtn = $("#add-train");
     var database = firebase.database();
-    var recentSnap = [];
+
 
 
 ////////////functions usw.///////////////////////////////////
