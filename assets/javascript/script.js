@@ -13,7 +13,7 @@
 ////////////variables////////////////////////////////////////
     var subBtn = $("#add-train");
     var database = firebase.database();
-
+    var emptyBtn = $("#clear-all");
 
 
 ////////////functions usw.///////////////////////////////////
@@ -43,7 +43,6 @@ subBtn.on("click", function(event){
 //////listens for database updates and when one occurs, updates train table with firebase data
 database.ref('trains').on("child_added", function(snapshot) {
     var sv = snapshot.val();
-    console.log(sv.key);
     var nextArrive = "";
     var minAway = "";
 
@@ -68,8 +67,8 @@ database.ref('trains').on("child_added", function(snapshot) {
 timeCalc();
 
     var newTr = $("<tr>");
-    newTr.addClass("bg-warning p-1");
-        newTr.attr("id", sv.name);
+    newTr.addClass("bg-warning p-1 added-row");
+        newTr.attr("id", snapshot.key);
 
     var nameTd = $("<td>").text(sv.name);
     var destTd = $("<td>").text(sv.destination);
@@ -86,18 +85,24 @@ timeCalc();
 
     $("tbody").append(newTr);
 });
-////6/25 should be able to duplicate the above function with "child_removed" listener, and within this function have empty() function to clear table
-////and then repopulate
-////maybe try to add .then({function()}) to end of remove button function, incl. empty() function to clear table
 
-
-
-/////////deletes selected node from firebase////////////////
+/////////deletes selected node from firebase and removes from HTML////////////////
 $("body").on("click", ".remove-btn", function(){
     var toDelete = $(this).attr("id");
-    console.log(toDelete);
     var delRef = firebase.database().ref('trains/'+toDelete);
-    console.log(delRef);
     delRef.remove();
+
+    $(this).closest("tr").remove();
 });
 
+/////////Empty all function////////////////
+emptyBtn.on("click", function(event){
+    event.preventDefault();
+    ////remove from firebase/////
+    var delRef = firebase.database().ref('trains');
+    delRef.remove();
+
+    ////remove from HTML////
+    var targetRows = $(".added-row");
+    targetRows.remove();
+});
